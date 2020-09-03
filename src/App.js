@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Task from './components/Task'
 import ProgressBar from './components/ProgressBar'
+import PBSchool from './components/PBSchool'
+import PBHealth from './components/PBHealth'
+import PBSocial from './components/PBSocial'
+import PBPersonal from './components/PBPersonal'
+import PBOther from './components/PBOther'
 import Dropdown from './components/Dropdown'
 import taskService from './services/tasks'
 import categoryService from './services/category'
@@ -132,12 +137,50 @@ const App = () => {
 				{/* <button type='submit'>save</button> */}
 			</form>
 
+            <div className="middle">
+                
+                <p>Categories</p>
+                <div/>
+                <p2>School</p2>
+                <p3>Health</p3>
+                <p5>Social</p5>
+                <p4>Personal</p4>
+                <p6>Other</p6>
+                
+            </div>
+
 			<div className="right-side">
                 
                 <p>Overall</p>
                 <div/>
                 
                 <ProgressBar numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                   
+                <p>School</p>
+                <div/>
+                
+                <PBSchool numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                    
+                <p>Health</p>
+                <div/>
+                
+                <PBHealth numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                    
+                <p>Social</p>
+                <div/>
+                
+                <PBSocial numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                    
+                <p>Personal</p>
+                <div/>
+                
+                <PBPersonal numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                    
+                <p>Other</p>
+                <div/>
+                
+                <PBOther numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                    
             </div>
 
 		</div>
