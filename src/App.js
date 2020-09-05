@@ -14,23 +14,24 @@ const App = () => {
 	const [tasks, setTasks] = useState([]) /*[varName, funcName] <- list of tasks*/
 	const [newTask, setNewTask] = useState('')
 	const [newCategory, setNewCategory] = useState('')
-	const [currentCategories, setCurrentCategories] = useState([])
+	/*const [currentCategories, setCurrentCategories] = useState(["School", "Health", "Social", "Personal", "Other"])*/
+    const categories = ["School", "Health", "Social", "Personal", "Other"]
 
 	useEffect(() => {
 		console.log('effect')
-		taskService.getAll().then((initialTasks) => {
+		taskService.getAll().then((initialTasks) => { /*taskService is mongo mans*/
 			setTasks(initialTasks)
 		})
 	}, [])
-
-	useEffect(() => {
+/*
+	useEffect(() => { //only runs once when start (not re-rendered)
 		console.log('categories')
-		categoryService.getAll().then((categories) => {
-			setCurrentCategories(categories)
+		categoryService.getAll().then((categories) => { //source of categories :o
+			setCurrentCategories([])
 			console.log(categories)
 		})
 	}, [])
-
+*/ 
 	const addTask = (event) => {
 
 		event.preventDefault()
@@ -43,7 +44,7 @@ const App = () => {
 			category: oneCategory,
 			date: Date(),
 		}
-
+/*
 		const existingCategories = currentCategories.find((result) => result.category === newCategory)
 		console.log(existingCategories)
 
@@ -52,7 +53,7 @@ const App = () => {
 				console.log(returnedCategory)
 				setCurrentCategories(currentCategories.concat(returnedCategory))
 			})
-		}
+		}*/
 
 		if (!newTask.replace(/\s/g, '').length) {
 			alert('Please enter valid text.')
@@ -73,6 +74,7 @@ const App = () => {
 	}
 
 	const handleCategoryChange = (event) => {
+        console.log(event.target.value)
 		setNewCategory(event.target.value)
 	}
 
@@ -120,21 +122,20 @@ const App = () => {
 			</div>
 			<form onSubmit={addTask}>
 				<input value={newTask} onChange={handleTaskChange} placeholder=' Task' />
-				<input
-					type='text'
-					value={newCategory}
-					onChange={handleCategoryChange}
-					placeholder=' Category'
-					list='cats'
-				/>
-				<datalist id='cats'>
-					{currentCategories.map((category, i) => (
-						<Dropdown key={i} category={category.category} />
-					))}
-				</datalist>
+                    
+                  <select
+                    value = {newCategory}
+                    onChange = {handleCategoryChange}
+                    placeholder = ' Category'>
+                        
+                    <option value="0">Select category</option>
+                    <option value="saab">Saab</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="audi">Audi</option>
+                  </select>
 
 				<input type="submit" value="Add" />
-				{/* <button type='submit'>save</button> */}
+
 			</form>
 
             <div className="middle">

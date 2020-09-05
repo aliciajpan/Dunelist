@@ -115,7 +115,7 @@ p6{
 	/*width: fit-content;*/
     max-width: 370px;
     margin-bottom: 6px;
-    /*text-overflow: ellipsis;*/
+    overflow-wrap: break-word;
 
 }
 
