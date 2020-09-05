@@ -1,3 +1,5 @@
+/*curly brackets = exit HTML mode; is code now*/
+
 import React, { useState, useEffect } from 'react'
 import Task from './components/Task'
 import ProgressBar from './components/ProgressBar'
@@ -98,13 +100,26 @@ const App = () => {
 	var date = new Date();
 	var displayDate = date.toDateString();
     var tasksDone = 0;
+    
+    var taskDict = {}; /*big dictionary*/
+    
+    categories.map((item) => { /*dis is string*/
+        taskDict[item] = { /*big dictionary holds key = category and val = smol dictionary with numbers*/
+            totalTasks: 0, 
+            tasksDone: 0
+        }
+    })
+    
     tasks.map((item) => { /*map = do same thing to each item in list*/
 
         if (item.status)
         {
             tasksDone += 1;
+            taskDict[item.category].tasksDone += 1;
         }
         console.log(tasksDone);
+        
+        taskDict[item.category].totalTasks += 1;
     })
 
 	return (
@@ -129,9 +144,12 @@ const App = () => {
                     placeholder = ' Category'>
                         
                     <option value="0">Select category</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
+
+                    <option value="School">School</option>
+                    <option value="Health">Health</option>
+                    <option value="Social">Social</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Other">Other</option>
                   </select>
 
 				<input type="submit" value="Add" />
@@ -153,34 +171,34 @@ const App = () => {
 			<div className="right-side">
                 
                 <p>Overall</p>
-                <div/>
+                
                 
                 <ProgressBar numberOfTasks={tasks.length} tasksDone={tasksDone} />
                    
-                <p>School</p>
-                <div/>
+                <p1>School</p1>
                 
-                <PBSchool numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                
+                <PBSchool numberOfTasks={taskDict["School"]["totalTasks"]} tasksDone={taskDict["School"]["tasksDone"]} /> 
                     
-                <p>Health</p>
-                <div/>
+                <p1>Health</p1>
                 
-                <PBHealth numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                
+                <PBHealth numberOfTasks={taskDict["Health"]["totalTasks"]} tasksDone={taskDict["Health"]["tasksDone"]} />
                     
-                <p>Social</p>
-                <div/>
+                <p1>Social</p1>
                 
-                <PBSocial numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                
+                <PBSocial numberOfTasks={taskDict["Social"]["totalTasks"]} tasksDone={taskDict["Social"]["tasksDone"]} />
                     
-                <p>Personal</p>
-                <div/>
+                <p1>Personal</p1>
                 
-                <PBPersonal numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                
+                <PBPersonal numberOfTasks={taskDict["Personal"]["totalTasks"]} tasksDone={taskDict["Personal"]["tasksDone"]} />
                     
-                <p>Other</p>
-                <div/>
+                <p1>Other</p1>
                 
-                <PBOther numberOfTasks={tasks.length} tasksDone={tasksDone} />
+                
+                <PBOther numberOfTasks={taskDict["Other"]["totalTasks"]} tasksDone={taskDict["Other"]["tasksDone"]} />
                     
             </div>
 

@@ -18,6 +18,10 @@ const Task = ({ task, toggleFinished, deleteTask }) => {
 			<button onClick={deleteTask} id='deleteButton'>
 				x
 			</button>
+            <div></div>
+            <span class="dot"></span>
+            
+          
 		</div>
 	)
 }
