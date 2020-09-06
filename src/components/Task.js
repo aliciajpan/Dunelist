@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Task = ({ task, toggleFinished, deleteTask }) => {
+const Task = ({ task, toggleFinished, deleteTask, dotColour }) => {
 	/*     const label = task.status
     ? 'finished' : 'not finished'
  */
@@ -19,7 +19,11 @@ const Task = ({ task, toggleFinished, deleteTask }) => {
 				x
 			</button>
             <div></div>
-            <span class="dot"></span>
+
+            <span style = {{backgroundColor: dotColour}} class="dot"></span>
+			<span class = "catTag">&nbsp;{task.category}</span>
+			{/* need to make strings because not in css file */}
+			
             
           
 		</div>

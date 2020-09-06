@@ -1,7 +1,10 @@
 import React from 'react';
 
 const PBSchool = ({ numberOfTasks, tasksDone }) => {
-    
+    if (numberOfTasks == 0)
+    {
+        numberOfTasks = 1;
+    }
     const styles = {
         barStyle: {
             width: (tasksDone / numberOfTasks) * 100 + "%",

@@ -1,7 +1,10 @@
 import React from 'react';
 
 const PBSocial = ({ numberOfTasks, tasksDone }) => {
-    
+    if (numberOfTasks == 0)
+    {
+        numberOfTasks = 1;
+    }
     const styles = {
         barStyle: {
             width: (tasksDone / numberOfTasks) * 100 + "%",

@@ -37,7 +37,7 @@ const App = () => {
 	const addTask = (event) => {
 
 		event.preventDefault()
-		const oneCategory = !newCategory.replace(/\s/g, '').length === true ? 'uncategorized' : newCategory
+		const oneCategory = (!newCategory.replace(/\s/g, '').length === true) || (newCategory == "0") ? "Other" : newCategory  //replace whitespace with nothing, check len; true if whitespace
 
 		const taskObject = {
 			content: newTask,
@@ -115,12 +115,22 @@ const App = () => {
         if (item.status)
         {
             tasksDone += 1;
+                
             taskDict[item.category].tasksDone += 1;
+            
         }
         console.log(tasksDone);
         
         taskDict[item.category].totalTasks += 1;
-    })
+	})
+	
+	var taskColours = {
+		"School": "palevioletred",
+		"Health": "skyblue",
+		"Social": "darkorange",
+		"Personal": "palegreen",
+		"Other": "lightgrey"
+	};
 
 	return (
 		<div>
@@ -132,6 +142,7 @@ const App = () => {
 						task={task}
 						toggleFinished={() => toggleFinished(task.id)}
 						deleteTask={() => deleteTask(task.id)}
+						dotColour = {taskColours[task.category]}
 					/>
 				))}
 			</div>
@@ -139,10 +150,10 @@ const App = () => {
 				<input value={newTask} onChange={handleTaskChange} placeholder=' Task' />
                     
                   <select
-                    value = {newCategory}
+					value = {newCategory}
                     onChange = {handleCategoryChange}
                     placeholder = ' Category'>
-                        
+
                     <option value="0">Select category</option>
 
                     <option value="School">School</option>
@@ -151,8 +162,9 @@ const App = () => {
                     <option value="Personal">Personal</option>
                     <option value="Other">Other</option>
                   </select>
-
+	
 				<input type="submit" value="Add" />
+
 
 			</form>
 
