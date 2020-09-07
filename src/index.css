@@ -1,14 +1,9 @@
 body {
 	margin: 50px;
-	font-family: 'Trebuchet MS', Helvetica, sans-serif; /* -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;*/
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	/*position: relative;
-    height: 100%;
-    width: 100%;*/
 	background-image: linear-gradient(to bottom right, #ffeeaa, #ffce2f);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -117,7 +112,6 @@ p6{
 	background: #ffce2f;
 	padding: 13px 13px;
 	border-radius: 10px;
-	/*text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;*/
 	color: black;
 	font-size: 18px;
 	font-family: Georgia, serif;
@@ -159,6 +153,8 @@ p6{
   -webkit-border-radius: 20px;
 
 }
+
+/* bars are colour-coded; need separate styling */
 
 #myBar { /*moving bar*/
   width: 1%;

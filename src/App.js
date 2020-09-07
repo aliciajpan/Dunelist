@@ -21,19 +21,11 @@ const App = () => {
 
 	useEffect(() => {
 		console.log('effect')
-		taskService.getAll().then((initialTasks) => { /*taskService is mongo mans*/
+		taskService.getAll().then((initialTasks) => { /*taskService is mongo side*/
 			setTasks(initialTasks)
 		})
 	}, [])
-/*
-	useEffect(() => { //only runs once when start (not re-rendered)
-		console.log('categories')
-		categoryService.getAll().then((categories) => { //source of categories :o
-			setCurrentCategories([])
-			console.log(categories)
-		})
-	}, [])
-*/ 
+
 	const addTask = (event) => {
 
 		event.preventDefault()
@@ -45,17 +37,7 @@ const App = () => {
 			status: false,
 			category: oneCategory,
 			date: Date(),
-		}
-/*
-		const existingCategories = currentCategories.find((result) => result.category === newCategory)
-		console.log(existingCategories)
 
-		if (existingCategories === undefined && oneCategory !== 'uncategorized') {
-			categoryService.create({ category: oneCategory }).then((returnedCategory) => {
-				console.log(returnedCategory)
-				setCurrentCategories(currentCategories.concat(returnedCategory))
-			})
-		}*/
 
 		if (!newTask.replace(/\s/g, '').length) {
 			alert('Please enter valid text.')
@@ -103,7 +85,7 @@ const App = () => {
     
     var taskDict = {}; /*big dictionary*/
     
-    categories.map((item) => { /*dis is string*/
+    categories.map((item) => { /*is string*/
         taskDict[item] = { /*big dictionary holds key = category and val = smol dictionary with numbers*/
             totalTasks: 0, 
             tasksDone: 0
