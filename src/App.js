@@ -37,7 +37,7 @@ const App = () => {
 			status: false,
 			category: oneCategory,
 			date: Date(),
-
+		}
 
 		if (!newTask.replace(/\s/g, '').length) {
 			alert('Please enter valid text.')
